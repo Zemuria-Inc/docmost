@@ -120,7 +120,11 @@ export class EnvironmentService {
   }
 
   getMailFromName(): string {
-    return this.configService.get<string>('MAIL_FROM_NAME', 'Docmost');
+    return this.configService.get<string>('MAIL_FROM_NAME', this.getAppName());
+  }
+
+  getAppName(): string {
+    return this.configService.get<string>('APP_NAME', 'Docmost');
   }
 
   getSmtpHost(): string {
