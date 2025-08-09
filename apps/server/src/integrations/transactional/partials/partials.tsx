@@ -12,16 +12,17 @@ import * as React from 'react';
 
 interface MailBodyProps {
   children: React.ReactNode;
+  appName?: string;
 }
 
-export function MailBody({ children }: MailBodyProps) {
+export function MailBody({ children, appName = 'Docmost' }: MailBodyProps) {
   return (
     <Html>
       <Head />
       <Body style={main}>
         <MailHeader />
         <Container style={container}>{children}</Container>
-        <MailFooter />
+        <MailFooter appName={appName} />
       </Body>
     </Html>
   );
@@ -35,12 +36,12 @@ export function MailHeader() {
   );
 }
 
-export function MailFooter() {
+export function MailFooter({ appName = 'Docmost' }: { appName?: string }) {
   return (
     <Section style={footer}>
       <Row>
         <Text style={{ textAlign: 'center', color: '#706a7b' }}>
-          © {new Date().getFullYear()} Docmost, All Rights Reserved <br />
+          © {new Date().getFullYear()} {appName}, All Rights Reserved <br />
         </Text>
       </Row>
     </Section>
